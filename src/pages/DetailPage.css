@@ -1,0 +1,204 @@
+/* 전체 레이아웃 기본 */
+.detail-page {
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* 상단 타이틀 */
+.detail-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.back {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+/* 로딩 / 에러 */
+.dp-center {
+  text-align: center;
+  color: var(--muted);
+  padding: 20px;
+}
+.dp-error {
+  color: #b91c1c;
+  background: #fff1f2;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+/* 핵심: 왼쪽(메인) / 오른쪽(5일) 레이아웃 */
+.detail-content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* left - today */
+.today-col {
+  flex: 1;
+  min-width: 0;
+} /* min-width:0로 내부 요소 줄어들게 함 */
+.today-card {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(12, 36, 80, 0.05);
+}
+.today-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.today-head h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #0f355b;
+}
+.small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* main area */
+.today-main {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 12px;
+}
+.today-main img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+}
+.today-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.today-temp {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.today-desc,
+.today-feel {
+  color: var(--muted);
+}
+
+/* coords / display_name */
+.place-info {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* right - 5day vertical column */
+.five-col {
+  width: 240px; /* 고정 폭: 필요 시 변경 */
+  flex-shrink: 0; /* 축소하지 않음 */
+  position: relative;
+}
+
+/* sticky로 스크롤시도 우측 칼럼을 따라오게 할 수 있음 */
+.five-col .five-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* 화면 상단에서 붙도록 sticky (헤더 높이에 맞춰 top값 조정) */
+  position: sticky;
+  top: 100px;
+}
+
+/* 각 카드 */
+.five-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+  min-height: 84px;
+  box-shadow: 0 2px 8px rgba(12, 36, 80, 0.03);
+}
+
+/* 왼쪽 영역(날짜 + 아이콘) */
+.f-left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.f-date {
+  font-weight: 700;
+  color: #111827;
+  font-size: 14px;
+}
+
+/* 아이콘 작게 */
+.f-left img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+/* 오른쪽 영역(온도) - 텍스트 정렬 */
+.f-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+}
+.f-max {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--accent);
+}
+.f-min {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* 최고/최저 레이블 (옵션) */
+.label {
+  font-size: 11px;
+  color: var(--muted);
+  margin-right: 6px;
+}
+
+/* 오늘 카드 강조 (첫번째 카드) */
+.five-item:first-child {
+  border: 1px solid rgba(15, 76, 129, 0.06);
+  box-shadow: 0 6px 18px rgba(15, 76, 129, 0.04);
+}
+
+/* 반응형: 작은 화면에서는 세로 스택 */
+@media (max-width: 880px) {
+  .detail-content {
+    flex-direction: column;
+  }
+  .five-col {
+    width: 100%;
+    position: relative;
+  }
+  .five-col .five-list {
+    position: relative;
+    top: 0;
+    flex-direction: row;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+  .five-item {
+    min-width: 160px;
+    flex: 0 0 auto;
+  }
+  .f-right {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
