@@ -58,23 +58,13 @@ export async function fetchCurrentWeatherByCityNameWithFallback(cityName) {
     return res.json();
   };
 
-  // 1) 원문 시도
+  // geocode -> coords -> coords 호출
   try {
-    return await tryByQ(cityName);
-  } catch (err1) {
-    // 2) 국가코드 붙여서 시도 (KR)
-    try {
-      return await tryByQ(`${cityName},KR`);
-    } catch (err2) {
-      // 3) geocode -> coords -> coords 호출
-      try {
-        const g = await geocode(cityName, { acceptLanguage: "en" });
-        return await fetchCurrentWeatherByCoords(g.lat, g.lon);
-      } catch (err3) {
-        const msg = `All attempts failed. by q: ${err1.message}; q+KR: ${err2.message}; geocode: ${err3.message}`;
-        throw new Error(msg);
-      }
-    }
+    const g = await geocode(cityName, { acceptLanguage: "en" });
+    return await fetchCurrentWeatherByCoords(g.lat, g.lon);
+  } catch (err3) {
+    const msg = `All attempts failed. by q: ${err1.message}; q+KR: ${err2.message}; geocode: ${err3.message}`;
+    throw new Error(msg);
   }
 }
 
