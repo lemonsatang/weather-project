@@ -1,0 +1,303 @@
+/* DetailPage.css - 개선판 */
+
+/* 변수 (원하면 조정 가능) */
+:root {
+  --page-max-width: 1100px;
+  --page-padding: 28px;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --muted: #6b7280;
+  --accent: #0f355b;
+  --card-radius: 14px;
+  --shadow-1: 0 6px 18px rgba(12, 36, 80, 0.06);
+  --shadow-2: 0 3px 8px rgba(12, 36, 80, 0.04);
+}
+
+/* 전체 페이지 기본 */
+.detail-page {
+  margin: 0;
+  width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 36px 0;
+  display: block;
+}
+
+/* 가운데 고정 컨테이너: 반드시 margin:0 auto 로 가운데 정렬 */
+.detail-inner {
+  max-width: 1100px; /* 필요하면 값을 더 키우거나 줄여라 */
+  margin: 0 auto; /* 핵심: 가운데 정렬 */
+  padding: 0 28px;
+  box-sizing: border-box;
+}
+
+/* 헤더 상단 여백 줄이기 (옵션) */
+.detail-top {
+  margin-bottom: 18px; /* 이전보다 조금 좁힘 */
+  align-items: center;
+}
+.back {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* 로딩 , 에러 */
+.dp-center {
+  text-align: center;
+  color: var(--muted);
+  padding: 20px;
+}
+.dp-error {
+  color: #b91c1c;
+  background: #fff1f2;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.detail-content {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* 오늘 날씨 카드(메인) */
+.today-col {
+  flex: 1;
+  min-width: 0;
+}
+.today-card {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.today-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.today-head h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--accent);
+}
+.small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* 메인 영역 */
+.today-main {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  margin-top: 4px;
+}
+.today-main img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.08)
+  );
+  padding: 8px;
+  box-shadow: var(--shadow-2);
+}
+.today-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.today-temp {
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.today-desc {
+  color: var(--muted);
+  font-size: 15px;
+}
+.today-feel {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.place-info {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* 5일 예보 카드 */
+.five-col {
+  width: 260px;
+  flex-shrink: 0;
+  position: relative;
+}
+.five-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: sticky;
+  top: 110px;
+}
+
+/* 각 카드 */
+.five-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  min-height: 78px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-2);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.f-left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+}
+.f-date {
+  font-weight: 700;
+  color: #0f1724;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.f-left img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.f-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+}
+.f-max {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--accent);
+}
+.f-min {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.label {
+  font-size: 11px;
+  color: var(--muted);
+  margin-right: 6px;
+}
+
+/* 강조: 오늘 카드 시각적 처리 */
+.five-item:first-child {
+  transform: translateY(-2px);
+  border: 1px solid rgba(15, 76, 129, 0.08);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.9)
+  );
+  box-shadow: 0 8px 24px rgba(12, 36, 80, 0.06);
+}
+
+.five-item:hover {
+  transform: translateY(-4px);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  box-shadow: 0 10px 28px rgba(12, 36, 80, 0.08);
+}
+
+/* today-card 반응형 너비 안정화 */
+@media (max-width: 1100px) {
+  .detail-inner {
+    padding: 0 18px;
+  }
+  .five-col {
+    width: 220px;
+  }
+  .today-main img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 880px) {
+  .detail-content {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .five-col {
+    width: 100%;
+    order: 2;
+    position: relative;
+    top: 0;
+  }
+  .five-list {
+    flex-direction: row;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+  .five-item {
+    min-width: 150px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+  .f-right {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .today-main {
+    flex-direction: row;
+    gap: 12px;
+  }
+}
+
+/* ========================
+   날씨에 따라 배경색상 변경
+   ======================== */
+.detail-page.weather-default {
+  background: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%);
+}
+.detail-page.weather-clear {
+  background: linear-gradient(180deg, #7ecbff 0%, #cfefff 100%);
+}
+.detail-page.weather-clouds {
+  background: linear-gradient(180deg, #cfd8e3 0%, #e9eef6 100%);
+}
+.detail-page.weather-rain {
+  background: linear-gradient(180deg, #4c6e91 0%, #93a7bd 100%);
+}
+.detail-page.weather-thunderstorm {
+  background: linear-gradient(180deg, #2a2f4f 0%, #4b4f6a 100%);
+}
+.detail-page.weather-snow {
+  background: linear-gradient(180deg, #edf6ff 0%, #ffffff 100%);
+}
+.detail-page.weather-mist {
+  background: linear-gradient(180deg, #d6dce3 0%, #eef2f5 100%);
+}

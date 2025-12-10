@@ -1,0 +1,40 @@
+.wc-card {
+  width: 200px;
+  background: var(--card);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 6px 14px rgba(12, 36, 80, 0.06);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.wc-card:active {
+  transform: translateY(2px);
+}
+.wc-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wc-city {
+  font-weight: 700;
+}
+.wc-temp {
+  font-size: 18px;
+  color: var(--accent);
+}
+.wc-mid {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wc-icon {
+  width: 48px;
+  height: 48px;
+}
+.wc-desc {
+  color: var(--muted);
+  font-size: 14px;
+}
