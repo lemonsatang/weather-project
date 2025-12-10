@@ -6,14 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { fetchCurrentWeatherByCityNameWithFallback } from "../services/weatherService";
 
 export default function MainPage() {
-  const [input, setInput] = useState("");
-  const [recent, setRecent] = useState([]);
+  const [input, setInput] = useState(""); // 검색 입력값
+  const [recent, setRecent] = useState([]); // 최근 검색 도시
   const [majorData, setMajorData] = useState([]); // 실제 API로 받은 데이터
   const [loadingMajor, setLoadingMajor] = useState(true);
   const [majorError, setMajorError] = useState("");
   const navigate = useNavigate();
 
-  // load recent from localStorage
+  // 로컬스토리지에서 최근검색도시 가져오기
   useEffect(() => {
     try {
       const raw = localStorage.getItem("recentCities");
@@ -21,6 +21,7 @@ export default function MainPage() {
     } catch {}
   }, []);
 
+  // 로컬스토리지에 최근검색도시 저장
   const saveRecent = (next) => {
     setRecent(next);
     try {
@@ -28,6 +29,7 @@ export default function MainPage() {
     } catch {}
   };
 
+  // 검색
   const handleSearch = () => {
     const t = input.trim();
     if (!t) return;
